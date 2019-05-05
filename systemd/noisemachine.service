@@ -1,0 +1,14 @@
+[Unit]
+Description=Noise machine and webserver
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u noisemachine.py
+WorkingDirectory=/home/pi/noisemachine
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
