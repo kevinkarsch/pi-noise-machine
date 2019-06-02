@@ -48,6 +48,7 @@ def changeSound():
     return ""
 
 if __name__ == "__main__":
+    mixer.pre_init(44100, -16, 2, 4096)
     mixer.init() # Pygame inits must be called on main thread. Flask app seems to run in a separate thread.
 
     with app.app_context(): # Start playing the first file

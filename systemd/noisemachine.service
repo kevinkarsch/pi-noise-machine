@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/python3 -u noisemachine.py
-WorkingDirectory=/home/pi/noisemachine
+WorkingDirectory=/home/pi/pi-noise-machine
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
