@@ -23,10 +23,9 @@
         <div class="row">
             <div class="offset-2 col-8 offset-2">
                 <div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action" onclick="changeSound(0)">White noise 1</button>
-                    <button type="button" class="list-group-item list-group-item-action" onclick="changeSound(1)">White noise 2</button>
-                    <button type="button" class="list-group-item list-group-item-action" onclick="changeSound(2)">Stream</button>
-                    <button type="button" class="list-group-item list-group-item-action" onclick="changeSound(3)">Waves</button>
+                    {%for i in range(0, len) %}
+                        <button type="button" class="list-group-item list-group-item-action" onclick="changeSound({{i}})">{{ audioNames[i] }}</button>
+                    {%endfor%}
                 </div>
             </div>
         </div>
@@ -47,9 +46,17 @@
 
         <div class="row">
             <div class="offset-2 col-8 offset-2 text-center">
-                <i class="fa fa-volume-down"></i>
+
+                <button class="btn btn-lg" style="background-color:transparent;" id="volumeDownButton">
+                    <i class="fa fa-volume-down"></i>
+                </button>
+
                 <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider" id="volumeSlider">
-                <i class="fa fa-volume-up"></i>
+
+                <button class="btn btn-lg" style="background-color:transparent;" id="volumeUpButton">
+                    <i class="fa fa-volume-up"></i>
+                </button>
+
             </div>
         </div>
     </div>
@@ -68,6 +75,21 @@
         $(function() {
             $('#stopButton').on('click', function() {
                 $.getJSON('/stop');
+                return false;
+            });
+        });
+
+
+        $(function() {
+            $('#volumeDownButton').on('click', function() {
+                $.getJSON('/volumeDown');
+                return false;
+            });
+        });
+
+        $(function() {
+            $('#volumeUpButton').on('click', function() {
+                $.getJSON('/volumeUp');
                 return false;
             });
         });
